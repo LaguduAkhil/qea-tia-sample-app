@@ -39,6 +39,11 @@ def test_get_user_role_valid():
     assert role == "user"
 
 
+def test_validate_token_medium_length():
+    # tokens between 10-31 chars are valid (API keys, session IDs)
+    assert validate_token("a" * 20) is True
+
+
 def test_get_user_role_invalid_token():
     with pytest.raises(PermissionError, match="Invalid token"):
         get_user_role("bad")

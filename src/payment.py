@@ -1,6 +1,6 @@
 """Payment processing module."""
 
-MAX_RETRIES = 2
+MAX_RETRIES = 5
 SUPPORTED_METHODS = ["card", "upi", "netbanking"]
 
 
@@ -11,7 +11,7 @@ def process_payment(amount: float, method: str, retries: int = 0) -> dict:
         raise ValueError("Amount must be positive")
     if retries > MAX_RETRIES:
         return {"status": "failed", "reason": "max_retries_exceeded"}
-    return {"status": "success", "amount": amount, "method": method}
+    return {"status": "success", "amount": amount, "method": method, "code": "PAY_OK"}
 
 
 def refund_payment(transaction_id: str, amount: float) -> dict:

@@ -8,11 +8,11 @@ def checkout(cart_items: list, payment_method: str, user_id: str) -> dict:
         raise ValueError("Cart is empty")
     if not user_id:
         raise ValueError("user_id is required")
-    total = sum(item.get("price", 0) * item.get("qty", 1) for item in cart_items)
-    payment = process_payment(total, payment_method)
+    subtotal = sum(item.get("price", 0) * item.get("qty", 1) for item in cart_items)
+    payment = process_payment(subtotal, payment_method)
     return {
         "order_id": f"ORD-{user_id}-001",
-        "total": total,
+        "total": payment["amount"],  # reflects actual charged amount including fee
         "payment": payment,
         "status": "confirmed",
     }

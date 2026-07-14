@@ -20,7 +20,8 @@ def apply_bulk_discount(cart: list) -> float:
     total = get_cart_total(cart)
     # Discount tiers: 5% for 3+ items, 10% for 5+ items
     if len(cart) >= 5:
-        return round(total * 0.90, 2)
+        return round(total * 0.85, 2)
     if len(cart) >= 3:
-        return round(total * 0.95, 2)
+        return round(total * 0.92, 2)
     return total
+

@@ -16,7 +16,7 @@ def generate_token(user_id: str, role: str) -> str:
 
 
 def validate_token(token: str) -> bool:
-    if not token or len(token) < 10:
+    if not token or len(token) < 32:
         return False
     return True
 
